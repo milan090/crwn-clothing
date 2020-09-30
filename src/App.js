@@ -4,11 +4,14 @@ import Homepage from './pages/homepage/homePage.component';
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
+import CheckoutPage from './pages/checkout/checkout.component';
 
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from './redux/user/user.selectors';
 import { setCurrentUser } from './redux/user/user.actions';
 
 import './App.css';
@@ -47,14 +50,15 @@ class App extends React.Component {
           <Route exact path="/" component={Homepage}/>
           <Route exact path="/shop" component={ShopPage} />
           <Route exact path="/signin" render={() => this.props.currentUser ? <Redirect to='/'/> : (<SignInAndSignUp/>)} />
+          <Route exact path="/checkout" component={CheckoutPage} />
         </Switch>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  currentUser: state.user.currentUser
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
 })
 
 const mapDispatchToProps = dispatch => ({
