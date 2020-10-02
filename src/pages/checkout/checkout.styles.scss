@@ -24,8 +24,20 @@
   }
 
   .total {
-    margin-top: 30px;
+    margin-top: 20px;
     margin-left: auto;
-    font-size: 36px;
+    font-size: 2.5vw;
+  }
+
+  button {
+    margin-left: auto;
+    margin-top: 30px;
+  }
+
+  .test-warning {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 24px;
+    color: red;
   }
 }
