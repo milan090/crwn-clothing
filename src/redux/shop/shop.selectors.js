@@ -10,7 +10,11 @@ export const selectCollections = createSelector(
 
 export const selectCollectionsForPreview = createSelector(
   [selectCollections],
-  collections => collections ? Object.values(collections) : null
+  collections => {
+    console.log("Collections: ", collections);
+    console.log(collections ? Object.values(collections) : [])
+    return collections ? Object.values(collections) : [];
+  }
 )
 
 export const selectCollection = memoize((collectionUrlParam) => (
@@ -24,4 +28,9 @@ export const selectCollection = memoize((collectionUrlParam) => (
 export const selectIsCollectionFetching = createSelector(
   [selectShop],
   shop => shop.isFetching
+);
+
+export const selectIsCollectionsLoaded = createSelector(
+  [selectShop],
+  shop => !!shop.collections
 )
